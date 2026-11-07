@@ -1,0 +1,282 @@
+---
+import '../styles/global.css';
+const base = import.meta.env.BASE_URL;
+const plans = [
+  { name: 'Essencial', price: 129, for: 'Para quem quer sair do zero com uma planilha que funciona.', hot: false,
+    items: ['Plano mensal de treino no app', 'Vídeo de cada exercício', 'Ajuste de carga a cada 4 semanas', 'Suporte por mensagem em dias úteis'] },
+  { name: 'Prumo', price: 249, for: 'O acompanhamento completo, com revisão de técnica.', hot: true,
+    items: ['Tudo do Essencial', 'Ajuste semanal com base no seu feedback', 'Correção de técnica por vídeo', 'Plano de progressão de cargas', 'Chamada de alinhamento mensal'] },
+  { name: 'Elite', price: 449, for: 'Para quem treina para uma meta com data marcada.', hot: false,
+    items: ['Tudo do Prumo', 'Periodização para prova ou meta', 'Orientação alimentar geral', 'Atendimento prioritário em horário estendido', 'Duas chamadas por mês'] },
+];
+const days = [
+  { d: 'Seg', t: 'Inferiores', p: 'Agachamento como base e um bloco de força unilateral. Dia mais pesado da semana.', min: 55, ex: [['Agachamento livre', '4 × 6'], ['Afundo caminhando', '3 × 10'], ['Mesa flexora', '3 × 12'], ['Panturrilha em pé', '4 × 15']] },
+  { d: 'Ter', t: 'Superiores A', p: 'Empurrar com foco em peito e ombros, volume moderado.', min: 50, ex: [['Supino com halteres', '4 × 8'], ['Desenvolvimento', '3 × 10'], ['Crucifixo inclinado', '3 × 12'], ['Tríceps na polia', '3 × 12']] },
+  { d: 'Qui', t: 'Superiores B', p: 'Puxar com foco em costas e bíceps, mais controle de escápula.', min: 50, ex: [['Barra fixa assistida', '4 × 6'], ['Remada curvada', '4 × 8'], ['Puxada neutra', '3 × 10'], ['Rosca alternada', '3 × 12']] },
+  { d: 'Sex', t: 'Full body', p: 'Fechamento da semana com movimentos compostos e condicionamento leve.', min: 45, ex: [['Levantamento terra romeno', '4 × 8'], ['Remada unilateral', '3 × 10'], ['Prancha com carga', '3 × 40 s'], ['Bike intervalada', '8 × 30 s']] },
+  { d: 'Sáb', t: 'Cardio e mobilidade', p: 'Sessão leve para recuperar e manter o hábito em dia.', min: 35, ex: [['Caminhada inclinada', '20 min'], ['Mobilidade de quadril', '8 min'], ['Mobilidade de ombro', '6 min']] },
+];
+const faq = [
+  ['Preciso de academia?', 'Não necessariamente. Na avaliação inicial você diz o que tem à mão (academia completa, halteres em casa ou só o peso do corpo) e o plano é montado em cima disso.'],
+  ['Como funciona o acompanhamento?', 'Você recebe a semana no app, registra cargas e como se sentiu, e o ajuste vem em cima desses números. Nos planos Prumo e Elite a revisão é semanal.'],
+  ['E se eu me machucar ou faltar uma semana?', 'O plano se adapta. Você avisa no app e a progressão é reorganizada sem culpa e sem recomeçar do zero.'],
+  ['Posso trocar de plano depois?', 'Pode, a qualquer momento, no próximo ciclo de cobrança. A diferença é calculada de forma proporcional.'],
+  ['Existe fidelidade?', 'Não. O plano trimestral tem desconto, mas você pode cancelar no mês seguinte sem multa.'],
+];
+---
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Prumo | Personal trainer online com planos mensais</title>
+  <meta name="description" content="Prumo é uma marca fictícia de demonstração: treino online individual, com plano semanal no app, correção de técnica por vídeo e ajuste de carga." />
+  <meta name="theme-color" content="#14181b" />
+  <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
+</head>
+<body>
+  <div class="demo-bar">Projeto de demonstração: marca, preços, pessoas e números são fictícios.</div>
+  <header class="top">
+    <div class="wrap nav">
+      <a class="logo" href="#topo" aria-label="Prumo, início">
+        <i><svg width="16" height="16" viewBox="0 0 32 32" aria-hidden="true"><path d="M9 28V5h9a7 7 0 0 1 0 14H9" fill="none" stroke="#f26b3a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg></i>
+        Prumo
+      </a>
+      <nav aria-label="Principal">
+        <ul>
+          <li><a href="#metodo">Método</a></li>
+          <li><a href="#semana">Semana-tipo</a></li>
+          <li><a href="#planos">Planos</a></li>
+          <li><a href="#treinadora">Treinadora</a></li>
+          <li><a href="#duvidas">Dúvidas</a></li>
+        </ul>
+      </nav>
+      <a class="btn btn-p" href="#comecar">Começar</a>
+    </div>
+  </header>
+
+  <main id="topo">
+    <div class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <p class="eyebrow">Personal trainer online</p>
+          <h1>Treino feito <em>para você</em>, no seu horário.</h1>
+          <p class="lead">Uma treinadora de verdade monta, acompanha e ajusta a sua semana. Você treina onde der, com vídeo de cada exercício e retorno sobre a sua técnica.</p>
+          <div class="cta-row">
+            <a class="btn btn-p" href="#comecar">Fazer avaliação gratuita</a>
+            <a class="btn btn-g" href="#planos">Ver planos</a>
+          </div>
+          <div class="proof">
+            <div class="avatars" aria-hidden="true">
+              <span style="background:#c8431a">AM</span><span style="background:#2f6b4f">JP</span><span style="background:#5a4a8a">LC</span><span style="background:#14181b">+</span>
+            </div>
+            <span><b>Mais de 300 alunos</b> acompanhados (número fictício)</span>
+          </div>
+        </div>
+        <div class="phone" role="img" aria-label="Exemplo da tela do aplicativo com o treino de segunda-feira, 2 de 4 exercícios concluídos">
+          <span class="tag-float">Semana 6</span>
+          <div class="row"><small>Segunda · Inferiores</small><small>55 min</small></div>
+          <h3>Treino de hoje</h3>
+          <div class="ring-wrap">
+            <svg class="ring" viewBox="0 0 84 84" aria-hidden="true">
+              <circle cx="42" cy="42" r="34" fill="none" stroke="#2a3238" stroke-width="9"/>
+              <circle cx="42" cy="42" r="34" fill="none" stroke="#f26b3a" stroke-width="9" stroke-linecap="round" stroke-dasharray="213.6" stroke-dashoffset="106.8" transform="rotate(-90 42 42)"/>
+            </svg>
+            <p><b>2 de 4</b>exercícios concluídos</p>
+          </div>
+          <div class="ex done"><span class="n">1</span>Agachamento livre<span class="s">4 × 6 · 80 kg</span></div>
+          <div class="ex done"><span class="n">2</span>Afundo caminhando<span class="s">3 × 10 · 22 kg</span></div>
+          <div class="ex"><span class="n">3</span>Mesa flexora<span class="s">3 × 12</span></div>
+          <div class="ex"><span class="n">4</span>Panturrilha em pé<span class="s">4 × 15</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="strip" aria-label="Números de demonstração">
+      <div class="wrap">
+        <div><b>4,9</b><span>nota média dos alunos</span></div>
+        <div><b>87%</b><span>seguem o plano após 3 meses</span></div>
+        <div><b>48 h</b><span>para receber o primeiro plano</span></div>
+        <div><b>6 anos</b><span>de coaching online</span></div>
+      </div>
+    </div>
+
+    <section id="metodo">
+      <div class="wrap">
+        <div class="sec-head">
+          <p class="eyebrow">Método</p>
+          <h2>Simples de começar, difícil de largar.</h2>
+          <p class="lead">Nada de planilha genérica copiada. O treino nasce da sua rotina, do seu histórico e do equipamento que você tem.</p>
+        </div>
+        <div class="steps">
+          <div class="step"><h3>Avaliação</h3><p>Um formulário e uma chamada curta para entender objetivo, lesões, tempo disponível e experiência de treino.</p></div>
+          <div class="step"><h3>Plano na sua mão</h3><p>Em até 48 horas a semana chega no app, com séries, repetições, descanso e vídeo de execução.</p></div>
+          <div class="step"><h3>Ajuste contínuo</h3><p>Você registra as cargas e o esforço. A treinadora revisa e muda o que precisa mudar, no ritmo do seu plano.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="semana" class="week">
+      <div class="wrap">
+        <div class="sec-head">
+          <p class="eyebrow">Semana-tipo</p>
+          <h2>Veja como uma semana de treino fica.</h2>
+          <p class="lead">Exemplo de divisão para quem treina cinco vezes. O seu plano muda conforme seus dias livres.</p>
+        </div>
+        <div class="tabs" role="tablist" aria-label="Dias da semana">
+          {days.map((x, i) => (
+            <button class="tab" role="tab" id={`tab-${i}`} aria-controls={`pn-${i}`} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1}>{x.d}</button>
+          ))}
+        </div>
+        {days.map((x, i) => (
+          <div class="panel" role="tabpanel" id={`pn-${i}`} aria-labelledby={`tab-${i}`} hidden={i !== 0}>
+            <div>
+              <h3>{x.t}</h3>
+              <p>{x.p}</p>
+              <div class="meta"><div><b>{x.min} min</b>duração</div><div><b>{x.ex.length}</b>blocos</div></div>
+            </div>
+            <ol>{x.ex.map(([n, s]) => <li>{n}<span>{s}</span></li>)}</ol>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section id="planos">
+      <div class="wrap">
+        <div class="sec-head">
+          <p class="eyebrow">Planos</p>
+          <h2>Escolha o nível de acompanhamento.</h2>
+          <p class="lead">Sem taxa de adesão e sem fidelidade. Pague no trimestre e economize 15%.</p>
+        </div>
+        <div class="toggle" role="group" aria-label="Periodicidade">
+          <button type="button" id="b-m" aria-pressed="true">Mensal</button>
+          <button type="button" id="b-t" aria-pressed="false">Trimestral<em>-15%</em></button>
+        </div>
+        <div class="plans">
+          {plans.map((p) => (
+            <article class={`plan${p.hot ? ' hot' : ''}`}>
+              {p.hot && <span class="badge">MAIS ESCOLHIDO</span>}
+              <h3>{p.name}</h3>
+              <p class="sub">{p.for}</p>
+              <p class="price" data-base={p.price}>R$ <span>{p.price}</span><small> /mês</small></p>
+              <p class="sub period">cobrado todo mês</p>
+              <ul>{p.items.map((it) => <li>{it}</li>)}</ul>
+              <a class={`btn ${p.hot ? 'btn-p' : 'btn-g'}`} href="#comecar">Quero o {p.name}</a>
+            </article>
+          ))}
+        </div>
+        <p class="note">Valores ilustrativos de uma marca fictícia. Nenhuma cobrança real é feita nesta página.</p>
+      </div>
+    </section>
+
+    <section id="treinadora" class="coach">
+      <div class="wrap coach-grid">
+        <div class="portrait" role="img" aria-label="Ilustração de silhueta da treinadora">
+          <svg viewBox="0 0 120 150" aria-hidden="true"><circle cx="60" cy="42" r="26" fill="#3a444a"/><path d="M8 150c0-34 22-56 52-56s52 22 52 56z" fill="#3a444a"/><path d="M42 118l18 14 18-14" fill="none" stroke="#f26b3a" stroke-width="4" stroke-linecap="round"/></svg>
+          <span>Ilustração, sem foto real</span>
+        </div>
+        <div>
+          <p class="eyebrow">Quem treina com você</p>
+          <h2>Rafaela Moura, personal trainer.</h2>
+          <p>Personagem fictícia desta demonstração. Seis anos conduzindo alunos online, com foco em força, hipertrofia e retomada de rotina para quem ficou muito tempo parado.</p>
+          <p>A ideia é uma só: treino que cabe na vida real, com carga que sobe devagar e técnica que protege.</p>
+          <div class="creds">
+            <div><b>Bacharel em Educação Física</b>formação</div>
+            <div><b>Pós em Treinamento de Força</b>especialização</div>
+            <div><b>+300 alunos</b>acompanhados</div>
+            <div><b>Resposta em 24 h</b>em dias úteis</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="sec-head">
+          <p class="eyebrow">Resultados</p>
+          <h2>Quem já treinou com o Prumo.</h2>
+        </div>
+        <div class="quotes">
+          <figure class="q"><p class="res">-9 kg em 5 meses</p><p>“Eu já tinha tentado de tudo. Aqui a semana vem pronta e, quando eu falho, o plano se ajusta. Isso mudou tudo.”</p><footer><b>Ana M.</b>Plano Prumo · aluna fictícia</footer></figure>
+          <figure class="q"><p class="res">Agachamento de 40 para 85 kg</p><p>“A correção por vídeo acertou minha postura em duas semanas. Parei de sentir dor no joelho.”</p><footer><b>João P.</b>Plano Prumo · aluno fictício</footer></figure>
+          <figure class="q"><p class="res">Meia maratona concluída</p><p>“A periodização para a prova foi o diferencial. Cheguei ao dia sem lesão e abaixo da meta de tempo.”</p><footer><b>Luciana C.</b>Plano Elite · aluna fictícia</footer></figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="duvidas">
+      <div class="wrap">
+        <div class="sec-head"><p class="eyebrow">Dúvidas</p><h2>Perguntas frequentes.</h2></div>
+        <div class="faq">
+          {faq.map(([q, a]) => <details><summary>{q}</summary><p>{a}</p></details>)}
+        </div>
+      </div>
+    </section>
+
+    <section id="comecar" style="padding-top:0">
+      <div class="wrap">
+        <div class="final">
+          <div>
+            <h2>Comece com uma avaliação gratuita.</h2>
+            <p>Conte seu objetivo e sua rotina. Em até um dia útil a treinadora responde com a recomendação de plano.</p>
+          </div>
+          <form class="form" id="lead" novalidate>
+            <label>Nome<input name="nome" autocomplete="name" required /></label>
+            <label>Contato (WhatsApp ou e-mail)<input name="contato" autocomplete="off" required /></label>
+            <label>Objetivo
+              <select name="obj"><option>Emagrecer</option><option>Ganhar massa</option><option>Voltar a treinar</option><option>Preparar para uma prova</option></select>
+            </label>
+            <button class="btn" type="submit">Pedir avaliação</button>
+            <p class="ok" id="ok" role="status">Formulário de demonstração: nada foi enviado. Em um projeto real, este pedido chegaria à treinadora.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site">
+    <div class="wrap">
+      <p>Prumo é um projeto de demonstração criado para portfólio. Marca, pessoas, depoimentos, preços e números são fictícios.</p>
+      <p>© 2026 · Projeto de portfólio</p>
+    </div>
+  </footer>
+
+  <script is:inline>
+    (function () {
+      var tabs = [].slice.call(document.querySelectorAll('.tab'));
+      function show(i) {
+        tabs.forEach(function (t, k) {
+          t.setAttribute('aria-selected', k === i ? 'true' : 'false');
+          t.tabIndex = k === i ? 0 : -1;
+          document.getElementById('pn-' + k).hidden = k !== i;
+        });
+      }
+      tabs.forEach(function (t, i) {
+        t.addEventListener('click', function () { show(i); });
+        t.addEventListener('keydown', function (e) {
+          var n = e.key === 'ArrowRight' ? i + 1 : e.key === 'ArrowLeft' ? i - 1 : null;
+          if (n === null) return;
+          n = (n + tabs.length) % tabs.length; show(n); tabs[n].focus();
+        });
+      });
+      var bm = document.getElementById('b-m'), bt = document.getElementById('b-t');
+      function price(q) {
+        bm.setAttribute('aria-pressed', String(!q)); bt.setAttribute('aria-pressed', String(q));
+        document.querySelectorAll('.price').forEach(function (el) {
+          var b = +el.dataset.base;
+          el.querySelector('span').textContent = q ? Math.round(b * 0.85) : b;
+          el.nextElementSibling.textContent = q ? 'cobrado R$ ' + Math.round(b * 0.85 * 3) + ' a cada 3 meses' : 'cobrado todo mês';
+        });
+      }
+      bm.addEventListener('click', function () { price(false); });
+      bt.addEventListener('click', function () { price(true); });
+      var f = document.getElementById('lead');
+      f.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (!f.nome.value.trim() || !f.contato.value.trim()) { (f.nome.value.trim() ? f.contato : f.nome).focus(); return; }
+        document.getElementById('ok').classList.add('show');
+      });
+    })();
+  </script>
+</body>
+</html>
